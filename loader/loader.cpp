@@ -302,6 +302,7 @@ mm_GetGameName(char *buffer, size_t size)
 MetamodBackend
 mm_DetermineBackend(QueryValveInterface engineFactory, QueryValveInterface serverFactory, const char *game_name)
 {
+	return MMBackend_CSS;
 	if (engineFactory("VEngineServer023", NULL) != NULL)
 	{
 		if (engineFactory("EngineTraceServer004", NULL) == NULL)

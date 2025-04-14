@@ -516,18 +516,23 @@ using namespace SourceMM;
  * @param v_factory		Factory method to use from ISmmAPI (such as engineFactory).
  * @param v_var			Variable name to store into.
  * @param v_type		Interface type (do not include the pointer/asterisk).
- * @param v_name		Interface name.
+ * @param v_name		Interface name. lmao just change 005 to 004
  */
 #define GET_V_IFACE_CURRENT(v_factory, v_var, v_type, v_name) \
-	v_var = (v_type *)ismm->VInterfaceMatch(ismm->v_factory(), v_name); \
-	if (!v_var) \
 	{ \
-		if (error && maxlen) \
+		const char* actual_v_name = (strcmp(v_name, "ServerGameClients005") == 0) ? "ServerGameClients004" : v_name; \
+		v_var = (v_type *)ismm->VInterfaceMatch(ismm->v_factory(), actual_v_name); \
+		if (!v_var) \
 		{ \
-			ismm->Format(error, maxlen, "Could not find interface: %s", v_name); \
+			if (error && maxlen) \
+			{ \
+				ismm->Format(error, maxlen, "GET_V_IFACE_CURRENT Could not find interface: %s", actual_v_name); \
+			} \
+			return false; \
 		} \
-		return false; \
 	}
+
+
 
  /**
   * @brief Same as GET_V_IFACE, except searches for any.
@@ -538,15 +543,18 @@ using namespace SourceMM;
   * @param v_name		Interface name.
   */
 #define GET_V_IFACE_ANY(v_factory, v_var, v_type, v_name) \
-	v_var = (v_type *)ismm->VInterfaceMatch(ismm->v_factory(), v_name, 0); \
+{ \
+	const char* actual_v_name = (strcmp(v_name, "ServerGameClients005") == 0) ? "ServerGameClients004" : v_name; \
+	v_var = (v_type *)ismm->VInterfaceMatch(ismm->v_factory(), actual_v_name, 0); \
 	if (!v_var) \
 	{ \
 		if (error && maxlen) \
 		{ \
-			ismm->Format(error, maxlen, "Could not find interface: %s", v_name); \
+			ismm->Format(error, maxlen, "GET_V_IFACE_ANY Could not find interface: %s", actual_v_name); \
 		} \
 		return false; \
-	}
+	} \
+}
 
 #endif //_INCLUDE_ISMM_PLUGIN_H
 

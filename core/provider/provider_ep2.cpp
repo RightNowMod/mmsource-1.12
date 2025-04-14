@@ -132,6 +132,7 @@ void BaseProvider::ConsolePrint(const char *str)
 void BaseProvider::Notify_DLLInit_Pre(CreateInterfaceFn engineFactory, 
 									  CreateInterfaceFn serverFactory)
 {
+	ConMsg("[META-]%s", "Notify_DLLInit_Pre function start.\n");
 #if SOURCE_ENGINE == SE_SDK2013
 	// Shim to avoid hooking shims
 	engine = (IVEngineServer *)((engineFactory)("VEngineServer023", NULL));
@@ -169,6 +170,7 @@ void BaseProvider::Notify_DLLInit_Pre(CreateInterfaceFn engineFactory,
 	}
 
 #if SOURCE_ENGINE == SE_DOTA
+	ConMsg("[META-]%s %s\n", "INTERFACEVERSION_SERVERGAMECLIENTS.", INTERFACEVERSION_SERVERGAMECLIENTS);
 	gameclients = (IServerGameClients *)(serverFactory(INTERFACEVERSION_SERVERGAMECLIENTS, NULL));
 #else
 	if ((gameclients = (IServerGameClients *)(serverFactory("ServerGameClients003", NULL)))

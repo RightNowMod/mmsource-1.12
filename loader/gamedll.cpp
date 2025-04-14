@@ -89,8 +89,9 @@ mm_DetectGameInformation()
 		return game_info_detected == 1 ? true : false;
 
 	game_info_detected = -1;
-
+	
 	mm_GetGameName(game_name, sizeof(game_name));
+	mm_LogFatal("[META-]game_name: %s", game_name);
 
 	if (!mm_GetFileOfAddress((void*)mm_DetectGameInformation, mm_path, sizeof(mm_path)))
 	{

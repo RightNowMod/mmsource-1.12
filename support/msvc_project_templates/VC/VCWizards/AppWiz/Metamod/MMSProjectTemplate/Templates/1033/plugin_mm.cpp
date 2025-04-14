@@ -66,11 +66,12 @@ bool [!output PLUGIN_CLASS]::Load(PluginId id, ISmmAPI* ismm, char* error, size_
 	PLUGIN_SAVEVARS();
 
   // Get the current Enginefactory interfaces
-
 	GET_V_IFACE_CURRENT(GetEngineFactory, [!output PLUGIN_CLASS]::EngineServer, IVEngineServer, INTERFACEVERSION_VENGINESERVER);
 	GET_V_IFACE_CURRENT(GetEngineFactory, [!output PLUGIN_CLASS]::GameEvents, IGameEventManager2, INTERFACEVERSION_GAMEEVENTSMANAGER2);
 	GET_V_IFACE_CURRENT(GetEngineFactory, [!output PLUGIN_CLASS]::PluginHelpers, IServerPluginHelpers, INTERFACEVERSION_ISERVERPLUGINHELPERS);
 	GET_V_IFACE_CURRENT(GetEngineFactory, [!output PLUGIN_CLASS]::CVar, ICvar, CVAR_INTERFACE_VERSION);
+	
+
 
   // Get the current ServerFactory interfaces
 
