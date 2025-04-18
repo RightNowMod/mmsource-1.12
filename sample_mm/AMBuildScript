@@ -7,6 +7,7 @@ proj_c_flags = [
   '-Wno-non-virtual-dtor',
   '-Wno-overloaded-virtual',
   '-Werror',
+  '-Wno-reorder-ctor',
   '-Wno-unused',
 ]
 proj_c_flags_opt = [
